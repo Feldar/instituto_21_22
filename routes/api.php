@@ -2,22 +2,7 @@
 
 use App\Http\Controllers\API\CentroController;
 use App\Http\Controllers\API\NivelController;
-
-
-
-use App\Http\Controllers\API\falta_profesorController;
-
-
-
-use App\Http\Controllers\API\GrupoController;
-use App\Http\Controllers\API\TutorizadoController;
-
 use App\Http\Controllers\API\MateriaController;
-
-use App\Http\Controllers\API\MatriculaController;
-use App\Http\Controllers\API\PeriodoLectivoController;
-use App\Http\Controllers\API\MateriaMatriculadaController;
-
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use Psr\Http\Message\ServerRequestInterface;
@@ -37,34 +22,12 @@ use Tqdev\PhpCrudApi\Config;
 
 Route::apiResource('centros', CentroController::class);
 
-Route::apiResource('matriculas', MatriculaController::class);
-
 Route::apiResource('niveles', NivelController::class)
 ->parameters([
     'niveles' => 'nivel'
 ]);
 
-
-
-Route::apiResource('faltas_profesores', falta_profesorController::class)
-->parameters([
-    'faltas_profesores' => 'falta_profesor'
-]);
-
-Route::apiResource('grupos', GrupoController::class);
-
-Route::apiResource('tutorizados', TutorizadoController::class);
-
-
-
 Route::apiResource('materias', MateriaController::class);
-
-Route::apiResource('periodosLectivos', PeriodoLectivoController::class);
-Route::apiResource('materiasmatriculadas', MateriaMatriculadaController::class)
-->parameters([
-    'materiasmatriculadas' => 'materiaMatriculada'
-
-]);
 
 
 Route::any('/{any}', function (ServerRequestInterface $request) {
