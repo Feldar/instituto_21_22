@@ -3,6 +3,10 @@
 namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
+use App\Models\Centro;
+use App\Models\User;
+use Illuminate\Support\Facades\Gate;
+
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -23,6 +27,10 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
-    }
+        //$this->registerPolicies();
+
+    Gate::define('update-centro', function (User $user, Centro $centro) {
+        return $user->id === $centro->coordinador;
+    });
+}
 }

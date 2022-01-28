@@ -7,6 +7,7 @@ use App\Models\Centro;
 use Illuminate\Http\Request;
 use App\Http\Resources\CentroResource;
 use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Facades\Gate;
 
 class CentroController extends Controller
 {
@@ -60,6 +61,10 @@ class CentroController extends Controller
      */
     public function update(Request $request, Centro $centro)
     {
+        if (! Gate::allows('update-centro', $centro)) {
+            abort(403);
+        }
+
         $centroData = json_decode($request->getContent(), true);
         $centro->update($centroData);
 
