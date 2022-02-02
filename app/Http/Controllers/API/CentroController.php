@@ -11,6 +11,16 @@ use Illuminate\Support\Facades\Gate;
 
 class CentroController extends Controller
 {
+        /**
+     * Create the controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->authorizeResource(Centro::class, 'centro');
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -31,6 +41,7 @@ class CentroController extends Controller
      */
     public function store(Request $request)
     {
+
         $centro = json_decode($request->getContent(), true);
 
         $centro = Centro::create($centro);
@@ -61,9 +72,6 @@ class CentroController extends Controller
      */
     public function update(Request $request, Centro $centro)
     {
-        if (! Gate::allows('update-centro', $centro)) {
-            abort(403);
-        }
 
         $centroData = json_decode($request->getContent(), true);
         $centro->update($centroData);
