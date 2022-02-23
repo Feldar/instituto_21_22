@@ -13,6 +13,7 @@ use App\Http\Controllers\API\GrupoController;
 use App\Http\Controllers\API\TutorizadoController;
 
 use App\Http\Controllers\API\MateriaController;
+use App\Http\Controllers\API\NotaController;
 
 use App\Http\Controllers\API\MatriculaController;
 use App\Http\Controllers\API\PeriodoLectivoController;
@@ -97,6 +98,8 @@ Route::apiResource('materiasmatriculadas', MateriaMatriculadaController::class)
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+Route::apiResource('notas', NotaController::class)->middleware('auth:sanctum');
 
 Route::any('/{any}', function (ServerRequestInterface $request) {
     $config = new Config([

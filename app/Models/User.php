@@ -62,4 +62,10 @@ class User extends Authenticatable
     public function grupos() {
         return $this->belongsToMany(Grupo::class, 'matriculas', 'alumno', 'grupo');
     }
+
+
+    public function notas()
+    {
+        return $this->hasMany(Nota::class, 'user_id');
+    }
 }
